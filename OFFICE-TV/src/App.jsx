@@ -7,7 +7,7 @@ import Speed from './components/Speed'
 
 function App() {
   
-  let [speed,setSpeed] = useState(100);
+  let [speed,setSpeed] = useState(0.1);
 
   return (
     <>
