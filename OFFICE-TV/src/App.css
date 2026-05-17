@@ -14,7 +14,7 @@ body,html,#root{
 }
 .TV{
   height: 85%;
-  border: solid 1px black;
+  border: solid 1px rgb(23, 20, 20);
   margin: 1%;
   margin-top: 0%;
   background-color: black;
