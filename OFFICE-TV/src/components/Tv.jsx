@@ -6,35 +6,58 @@ const Tv = () => {
     let [coordinate,setCoordinate] = useState([0,0]) 
     let TV = useRef(null);
     useEffect(()=>{
-        let el = DVD.current;
-        el.style.position = 'absolute';
-        let pos = el.getBoundingClientRect();
-
-        let l = pos.left;
-        let r = pos.top;
+        const el = DVD.current;
+        const tvEl = TV.current;
+        
+        
+        let elPos = el.getBoundingClientRect();
+        let tvElPos = tvEl.getBoundingClientRect();
+        let l = elPos.left-tvElPos.left;
+        let t = elPos.top-tvElPos.top;
         
         setCoordinate(([x,y])=>{
-            return [l,r]
+            return [l,t]
         })
+
+        el.style.left = `${l}px`;
+        el.style.top = `${t}px`;
         
         let idx = 0;
-        let dir = [[10,10],[-10,10],[-10,-10],[10,-10]]
-        let tvEl = TV.current;
+        // let dir = [[10,10],[-10,10],[-10,-10],[10,-10]]
+        let dirL = 12
+        let dirT = 12
+        
+        tvEl.style.position = 'relative'
+        el.style.position = 'absolute'
 
-        let tvElPos = tvEl.getBoundingClientRect();
+        
 
         let i = setInterval(()=>{
             setCoordinate(([x,y])=>{
                 
-                let left = x+dir[idx][0];
-                let right = y+dir[idx][1];
-
+                let left = x+dirL;
+                let top = y+dirT;
+                if((left <= 0 && top <= 0)||(left<=0 && top >= tvEl.clientHeight-el.offsetHeight) 
+                  || (left >= tvEl.clientWidth-el.offsetWidth && top <= 0) 
+                  || (left >= tvEl.clientWidth-el.offsetWidth && top>=tvEl.clientHeight-el.offsetHeight)){
+                    alert('yeahh!')  
+                  }
+                if(left<0 || left>tvEl.clientWidth-el.offsetWidth){
+                  dirL*=-1
+                  left = x+dirL;
+                }
+                if(top<0 || top>tvEl.clientHeight-el.offsetHeight){
+                  dirT*=-1
+                  top = y+dirT;
+                }
+                
                 el.style.left = `${left}px`;
-                el.style.top = `${right}px`;
-                return [left,right];
+                el.style.top = `${top}px`;
+                return [left,top];
             });
-        },1000);
+        },1);
         return ()=> clearInterval(i)
+        console.log('hello:',el.style.left,el.style.top)
     },[])
     
   return (
