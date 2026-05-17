@@ -9,13 +9,15 @@ body,html,#root{
   justify-content: center;
   align-items: center;
   padding: 1%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "American Typewriter", serif;
+  font-weight: bolder;
 }
 .TV{
-  height: 90%;
+  height: 85%;
   border: solid 1px black;
   margin: 1%;
   margin-top: 0%;
+  background-color: black;
 }
 .DVD{
   border: solid black 1px;
@@ -24,4 +26,42 @@ body,html,#root{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+.controlBar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button{
+  margin-left: 1%;
+}
+
+.DVD{
+  animation: colorChange 10s infinite;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+@keyframes colorChange{
+  0%{
+    background-color: red;
+  }
+
+  25%{
+    background-color: blue;
+  }
+
+  50%{
+    background-color: green;
+  }
+
+  75%{
+    background-color: rgb(32, 115, 13);
+  }
+
+  100%{
+    background-color: red;
+  }
 }
