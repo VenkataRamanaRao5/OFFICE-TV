@@ -37,11 +37,6 @@ const Tv = () => {
                 
                 let left = x+dirL;
                 let top = y+dirT;
-                if((left <= 0 && top <= 0)||(left<=0 && top >= tvEl.clientHeight-el.offsetHeight) 
-                  || (left >= tvEl.clientWidth-el.offsetWidth && top <= 0) 
-                  || (left >= tvEl.clientWidth-el.offsetWidth && top>=tvEl.clientHeight-el.offsetHeight)){
-                    alert('yeahh!')  
-                  }
                 if(left<0 || left>tvEl.clientWidth-el.offsetWidth){
                   dirL*=-1
                   left = x+dirL;
@@ -50,6 +45,11 @@ const Tv = () => {
                   dirT*=-1
                   top = y+dirT;
                 }
+                if((left <= 0 && top <= 0)||(left<=0 && top >= tvEl.clientHeight-el.offsetHeight) 
+                  || (left >= tvEl.clientWidth-el.offsetWidth && top <= 0) 
+                  || (left >= tvEl.clientWidth-el.offsetWidth && top>=tvEl.clientHeight-el.offsetHeight)){
+                    alert('yeahh!')  
+                  }
                 
                 el.style.left = `${left}px`;
                 el.style.top = `${top}px`;
